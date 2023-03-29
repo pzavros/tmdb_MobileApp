@@ -1,9 +1,0 @@
-//TO-ASK
-1. Local storage 
-2. Remove value from db
-3. Different favorite lists for each user
-
-
-//TO-DO
-1. Documentation - support with evidence
-2.

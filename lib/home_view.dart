@@ -167,15 +167,6 @@ class _homeState extends State<home> {
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        child: modified_text(
-                                            text: popMovies[index]['title'] !=
-                                                    null
-                                                ? popMovies[index]['title']
-                                                : 'loading',
-                                            color: Colors.white,
-                                            size: 15),
-                                      )
                                     ],
                                   ),
                                 ),
@@ -248,16 +239,6 @@ class _homeState extends State<home> {
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        child: modified_text(
-                                            text: topratedMovies[index]
-                                                        ['title'] !=
-                                                    null
-                                                ? topratedMovies[index]['title']
-                                                : 'loading',
-                                            color: Colors.white,
-                                            size: 15),
-                                      )
                                     ],
                                   ),
                                 ),
@@ -330,16 +311,6 @@ class _homeState extends State<home> {
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        child: modified_text(
-                                            text: upcomingMovies[index]
-                                                        ['title'] !=
-                                                    null
-                                                ? upcomingMovies[index]['title']
-                                                : 'loading',
-                                            color: Colors.white,
-                                            size: 15),
-                                      )
                                     ],
                                   ),
                                 ),
@@ -416,15 +387,6 @@ class _homeState extends State<home> {
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        child: modified_text(
-                                            text:
-                                                popShows[index]['name'] != null
-                                                    ? popShows[index]['name']
-                                                    : 'loading',
-                                            color: Colors.white,
-                                            size: 15),
-                                      )
                                     ],
                                   ),
                                 ),
@@ -497,16 +459,6 @@ class _homeState extends State<home> {
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        child: modified_text(
-                                            text: topratedShows[index]
-                                                        ['name'] !=
-                                                    null
-                                                ? topratedShows[index]['name']
-                                                : 'loading',
-                                            color: Colors.white,
-                                            size: 15),
-                                      )
                                     ],
                                   ),
                                 ),

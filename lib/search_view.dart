@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
-import 'package:expandable_search_bar/expandable_search_bar.dart';
 import 'package:tmdbapp/actorsfulldesc_view.dart';
 import 'package:tmdbapp/searchResults_view.dart';
+import 'package:tmdbapp/tvfulldesc_view.dart';
 import 'fulldesc_view.dart';
 import 'modified_text.dart';
 
@@ -20,6 +20,8 @@ class _search_viewState extends State<search> {
   List popMovies = [];
   List topratedMovies = [];
   List popActors = [];
+  List top5tv = [];
+  List top5movies = [];
   late String usersInput;
   final TextEditingController _textController = TextEditingController();
 
@@ -30,7 +32,9 @@ class _search_viewState extends State<search> {
       showErrorLogs: true,
     );
     Map popularResult = await tmdb.v3.movies.getPopular();
-    Map topratedResult = await tmdb.v3.movies.getTopRated();
+    Map topratedResult = await tmdb.v3.movies.getNowPlaying();
+    Map top5tvResults = await tmdb.v3.tv.getTopRated();
+    Map top5moviesResults = await tmdb.v3.movies.getTopRated();
     Map actorsResult = await tmdb.v3.people.getPopular();
     Map searchResult = await tmdb.v3.search.queryMovies(_textController.text);
 
@@ -40,6 +44,8 @@ class _search_viewState extends State<search> {
       popMovies = popularResult['results'];
       topratedMovies = topratedResult['results'];
       popActors = actorsResult['results'];
+      top5tv = top5tvResults['results'];
+      top5movies = top5moviesResults['results'];
     });
   }
 
@@ -105,171 +111,270 @@ class _search_viewState extends State<search> {
           body: ListView(
             children: [
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  modified_text(
-                    text: "Trending Movies",
-                    color: Colors.white,
-                    size: 26,
-                  ),
-                  Container(
-                    height: 270,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: popMovies.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => fullDesc_view(
-                                      itemDesc: popMovies[index])),
-                            );
-                          },
-                          child: Container(
-                            width: 140,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              'http://image.tmdb.org/t/p/w500' +
-                                                  popMovies[index]
-                                                      ['poster_path']))),
-                                ),
-                                Container(
-                                  child: modified_text(
-                                      text: popMovies[index]['title'] != null
-                                          ? popMovies[index]['title']
-                                          : 'loading',
-                                      color: Colors.white,
-                                      size: 15),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  modified_text(
-                    text: "Top Rated",
-                    color: Colors.white,
-                    size: 26,
-                  ),
-                  Container(
-                    height: 270,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: topratedMovies.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => fullDesc_view(
-                                      itemDesc: topratedMovies[index])),
-                            );
-                          },
-                          child: Container(
-                            width: 140,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              'http://image.tmdb.org/t/p/w500' +
-                                                  topratedMovies[index]
-                                                      ['poster_path']))),
-                                ),
-                                Container(
-                                  child: modified_text(
-                                      text:
-                                          topratedMovies[index]['title'] != null
-                                              ? topratedMovies[index]['title']
+                  //Display Popular today
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      modified_text(
+                        text: "Popular Today",
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Container(
+                        height: 270,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: popMovies.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => fullDesc_view(
+                                          itemDesc: popMovies[index])),
+                                );
+                              },
+                              child: Container(
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'http://image.tmdb.org/t/p/w500' +
+                                                      popMovies[index]
+                                                          ['poster_path']))),
+                                    ),
+                                    Container(
+                                      child: modified_text(
+                                          text: popMovies[index]['title'] != null
+                                              ? popMovies[index]['title']
                                               : 'loading',
-                                      color: Colors.white,
-                                      size: 15),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  modified_text(
-                    text: "Actors",
-                    color: Colors.white,
-                    size: 26,
-                  ),
-                  Container(
-                    height: 270,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: popActors.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => actorsfulldesc_view(
-                                        picture: popActors[index]
-                                            ['profile_path'],
-                                        title: popActors[index]['name'],
-                                        known: popActors[index]['known_for'],
-                                        id: popActors[index]['id'],
-                                      )),
+                                          color: Colors.white,
+                                          size: 15),
+                                    )
+                                  ],
+                                ),
+                              ),
                             );
                           },
-                          child: Container(
-                            width: 140,
-                            child: Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                'http://image.tmdb.org/t/p/w500' +
-                                                    popActors[index]
-                                                        ['profile_path']))),
-                                  ),
+                        ),
+                      )
+                    ],
+                  ),
+                  //Display now playing
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      modified_text(
+                        text: "Now Playing",
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Container(
+                        height: 270,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: topratedMovies.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => fullDesc_view(
+                                          itemDesc: topratedMovies[index])),
+                                );
+                              },
+                              child: Container(
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'http://image.tmdb.org/t/p/w500' +
+                                                      topratedMovies[index]
+                                                          ['poster_path']))),
+                                    ),
+                                    Container(
+                                      child: modified_text(
+                                          text:
+                                              topratedMovies[index]['title'] != null
+                                                  ? topratedMovies[index]['title']
+                                                  : 'loading',
+                                          color: Colors.white,
+                                          size: 15),
+                                    )
+                                  ],
                                 ),
-                                Container(
-                                  child: modified_text(
-                                      text: popActors[index]['name'] != null
-                                          ? popActors[index]['name']
-                                          : 'loading',
-                                      color: Colors.white,
-                                      size: 15),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  )
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                  //Display top 5 tv shows
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      modified_text(
+                        text: "Top 5 TV Shows",
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Container(
+                        height: 270,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: top5tv.length >= 5 ? 5 : top5tv.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => tvfulldesc(
+                                          itemDesc: top5tv[index])),
+                                );
+                              },
+                              child: Container(
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'http://image.tmdb.org/t/p/w500' +
+                                                      top5tv[index]
+                                                      ['poster_path']))),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                  //Display top 5 movies
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      modified_text(
+                        text: "Top 5 Movies",
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Container(
+                        height: 270,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: top5movies.length >= 5 ? 5 : top5movies.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => fullDesc_view(
+                                          itemDesc: top5movies[index])),
+                                );
+                              },
+                              child: Container(
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'http://image.tmdb.org/t/p/w500' +
+                                                      top5movies[index]
+                                                      ['poster_path']))),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                  //Display Actors
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      modified_text(
+                        text: "Actors",
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      Container(
+                        height: 270,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: popActors.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => actorsfulldesc_view(
+                                            picture: popActors[index]
+                                                ['profile_path'],
+                                            title: popActors[index]['name'],
+                                            known: popActors[index]['known_for'],
+                                            id: popActors[index]['id'],
+                                          )),
+                                );
+                              },
+                              child: Container(
+                                width: 140,
+                                child: Column(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(100.0),
+                                      child: Container(
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    'http://image.tmdb.org/t/p/w500' +
+                                                        popActors[index]
+                                                            ['profile_path']))),
+                                      ),
+                                    ),
+                                    Container(
+                                      child: modified_text(
+                                          text: popActors[index]['name'] != null
+                                              ? popActors[index]['name']
+                                              : 'loading',
+                                          color: Colors.white,
+                                          size: 15),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ],

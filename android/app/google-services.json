@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "980275713195",
+    "firebase_url": "https://tmdb-app-e9067-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tmdb-app-e9067",
+    "storage_bucket": "tmdb-app-e9067.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980275713195:android:b81efd25aa7aeaf16fd3ee",
+        "android_client_info": {
+          "package_name": "com.example.tmdbapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980275713195-s09rb34qjaqis9aa39i95vt8sgdnh74j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrrkrbJHmPU76JwjXfBjOa53VxrPR4mZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980275713195-s09rb34qjaqis9aa39i95vt8sgdnh74j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -124,7 +124,8 @@ class _homeState extends State<home> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => fullDesc_view(
+                                        builder: (context) =>
+                                            fullDesc_view(
                                             itemDesc: popMovies[index])),
                                   );
                                 },

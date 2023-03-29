@@ -123,8 +123,7 @@ class _tvfulldescState extends State<tvfulldesc> {
           //   child: Image.network('http://image.tmdb.org/t/p/w500' +
           //       widget.itemDesc['backdrop_path']),
           // ),
-          Flexible(
-            child: Container(
+          Container(
                 padding: EdgeInsets.all(10),
                 child: modified_text(
                   text: widget.itemDesc['overview'] != null
@@ -134,7 +133,6 @@ class _tvfulldescState extends State<tvfulldesc> {
                   color: Colors.white,
                 )),
 
-          )
         ]),
       ),
     );

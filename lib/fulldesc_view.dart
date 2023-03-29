@@ -131,9 +131,7 @@ class _fullDesc_viewState extends State<fullDesc_view> {
               ],
             ),
           ),
-
-          Flexible(
-            child: Container(
+             Container(
                 padding: EdgeInsets.all(10),
                 child: modified_text(
                   text: widget.itemDesc['overview'] != null
@@ -142,7 +140,7 @@ class _fullDesc_viewState extends State<fullDesc_view> {
                   size: 18,
                   color: Colors.white,
                 )),
-          )
+
         ]),
       ),
     );

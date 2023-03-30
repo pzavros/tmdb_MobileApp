@@ -77,10 +77,11 @@ class _tvfulldescState extends State<tvfulldesc> {
               )),
           ElevatedButton(
             onPressed: () {
-              favRef.push().set({
+              final movieId = widget.itemDesc['id'].toString(); // get the movie ID as a string
+              favRef.child(movieId).set({ // use the movie ID as the key instead of push()
                 'title': widget.itemDesc['name'],
                 'image': 'http://image.tmdb.org/t/p/w500' + widget.itemDesc['poster_path'],
-                'id': widget.itemDesc['id'],
+                'id' : widget.itemDesc['id'],
                 'isFavorite': true
               });
 

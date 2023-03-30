@@ -68,7 +68,7 @@ List actorssearchList = [];
                 color: Colors.white,
                 size: 26,
               ),
-              Container(
+              SizedBox(
                 height: 400,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -86,13 +86,13 @@ List actorssearchList = [];
                                     itemDesc: searchList[index])),
                           );
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: 200,
                           child: Column(
                             children: [
                               Stack(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 300,
                                     child: AspectRatio(
                                       aspectRatio: 0.7,
@@ -159,7 +159,7 @@ List actorssearchList = [];
                 size: 26,
               ),
               SizedBox(height: 10),
-              Container(
+              SizedBox(
                 height: 400,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -176,7 +176,7 @@ List actorssearchList = [];
                           ),
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: 200,
                         child: Column(
                           children: [
@@ -186,7 +186,7 @@ List actorssearchList = [];
                                 children: [
                                   Stack(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         height: 300,
                                         child: AspectRatio(
                                           aspectRatio: 0.7,
@@ -250,12 +250,12 @@ List actorssearchList = [];
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              modified_text(
+              const modified_text(
                 text: "Actors",
                 color: Colors.white,
                 size: 26,
               ),
-              Container(
+              SizedBox(
                 height: 270,
                 child: ListView.builder(
 
@@ -264,7 +264,7 @@ List actorssearchList = [];
                   itemBuilder: (context, index) {
                     if (actorssearchList[index]['profile_path'] == null) {
                       // Skip the item if the profile_path is null
-                      return SizedBox.shrink();
+                      return const SizedBox.shrink();
                     }
                     return InkWell(
                       onTap: () {
@@ -280,13 +280,13 @@ List actorssearchList = [];
                           ),
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: 140,
                         child: Column(
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100.0),
-                              child: Container(
+                              child: SizedBox(
                                 height: 200,
                                 child: AspectRatio(
                                   aspectRatio: 0.7,

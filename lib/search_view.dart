@@ -149,14 +149,6 @@ class _search_viewState extends State<search> {
                                                       popMovies[index]
                                                           ['poster_path']))),
                                     ),
-                                    Container(
-                                      child: modified_text(
-                                          text: popMovies[index]['title'] != null
-                                              ? popMovies[index]['title']
-                                              : 'loading',
-                                          color: Colors.white,
-                                          size: 15),
-                                    )
                                   ],
                                 ),
                               ),
@@ -203,15 +195,6 @@ class _search_viewState extends State<search> {
                                                       topratedMovies[index]
                                                           ['poster_path']))),
                                     ),
-                                    Container(
-                                      child: modified_text(
-                                          text:
-                                              topratedMovies[index]['title'] != null
-                                                  ? topratedMovies[index]['title']
-                                                  : 'loading',
-                                          color: Colors.white,
-                                          size: 15),
-                                    )
                                   ],
                                 ),
                               ),

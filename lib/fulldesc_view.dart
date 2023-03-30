@@ -2,9 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tmdb_api/tmdb_api.dart';
 import 'package:tmdbapp/modified_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class fullDesc_view extends StatefulWidget {
   final Map<String, dynamic> itemDesc;
@@ -89,11 +87,11 @@ class _fullDesc_viewState extends State<fullDesc_view> {
               )),
           ElevatedButton(
             onPressed: () {
-              favRef.push().set({
+              final movieId = widget.itemDesc['id'].toString(); // get the movie ID as a string
+              favRef.child(movieId).set({ // use the movie ID as the key instead of push()
                 'title': widget.itemDesc['title'],
-                'image': 'http://image.tmdb.org/t/p/w500' +
-                    widget.itemDesc['poster_path'],
-                'id': widget.itemDesc['id'],
+                'image': 'http://image.tmdb.org/t/p/w500' + widget.itemDesc['poster_path'],
+                'id' : widget.itemDesc['id'],
                 'isFavorite': true
               });
 
@@ -112,6 +110,7 @@ class _fullDesc_viewState extends State<fullDesc_view> {
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
+
             style: ElevatedButton.styleFrom(
               primary: Colors.black,
               shape: RoundedRectangleBorder(

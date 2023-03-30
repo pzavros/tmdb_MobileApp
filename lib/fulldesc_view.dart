@@ -144,5 +144,7 @@ class _fullDesc_viewState extends State<fullDesc_view> {
         ]),
       ),
     );
+
   }
+
 }

@@ -25,20 +25,37 @@ class _search_viewState extends State<search> {
   late String usersInput;
   final TextEditingController _textController = TextEditingController();
 
+  // This is an asynchronous function which loads data from TMDB API
   loadApi() async {
+
+    // Creating an instance of TMDB with API keys
     TMDB tmdb = TMDB(ApiKeys(ApiKey, ApiToken));
+
+    // Enabling logging in the ConfigLogger
     const ConfigLogger(
       showLogs: true,
       showErrorLogs: true,
     );
-    Map popularResult = await tmdb.v3.movies.getPopular();
-    Map topratedResult = await tmdb.v3.movies.getNowPlaying();
-    Map top5tvResults = await tmdb.v3.tv.getTopRated();
-    Map top5moviesResults = await tmdb.v3.movies.getTopRated();
-    Map actorsResult = await tmdb.v3.people.getPopular();
-    Map searchResult = await tmdb.v3.search.queryMovies(_textController.text);
 
-    //print(actorsResult);
+    // Retrieving data from the TMDB API using the async methods provided by the TMDB library
+
+    // Retrieve popular movies list
+    Map popularResult = await tmdb.v3.movies.getPopular();
+
+    // Retrieve now playing movies list
+    Map topratedResult = await tmdb.v3.movies.getNowPlaying();
+
+    // Retrieve top rated TV shows list
+    Map top5tvResults = await tmdb.v3.tv.getTopRated();
+
+    // Retrieve top rated movies list
+    Map top5moviesResults = await tmdb.v3.movies.getTopRated();
+
+    // Retrieve popular actors list
+    Map actorsResult = await tmdb.v3.people.getPopular();
+
+
+    // Updating the state of the widget with the retrieved data
 
     setState(() {
       popMovies = popularResult['results'];
@@ -49,10 +66,12 @@ class _search_viewState extends State<search> {
     });
   }
 
+
   @override
   void dispose() {
     super.dispose();
   }
+
   void initState() {
     super.initState();
     loadApi();
@@ -224,8 +243,8 @@ class _search_viewState extends State<search> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => tvfulldesc(
-                                          itemDesc: top5tv[index])),
+                                      builder: (context) =>
+                                          tvfulldesc(itemDesc: top5tv[index])),
                                 );
                               },
                               child: Container(
@@ -239,7 +258,7 @@ class _search_viewState extends State<search> {
                                               image: NetworkImage(
                                                   'http://image.tmdb.org/t/p/w500' +
                                                       top5tv[index]
-                                                      ['poster_path']))),
+                                                          ['poster_path']))),
                                     ),
                                   ],
                                 ),
@@ -263,7 +282,8 @@ class _search_viewState extends State<search> {
                         height: 270,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: top5movies.length >= 5 ? 5 : top5movies.length,
+                          itemCount:
+                              top5movies.length >= 5 ? 5 : top5movies.length,
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
@@ -285,7 +305,7 @@ class _search_viewState extends State<search> {
                                               image: NetworkImage(
                                                   'http://image.tmdb.org/t/p/w500' +
                                                       top5movies[index]
-                                                      ['poster_path']))),
+                                                          ['poster_path']))),
                                     ),
                                   ],
                                 ),
@@ -338,14 +358,16 @@ class _search_viewState extends State<search> {
                                 child: Column(
                                   children: [
                                     ClipRRect(
-                                      borderRadius: BorderRadius.circular(100.0),
+                                      borderRadius:
+                                          BorderRadius.circular(100.0),
                                       child: Container(
                                         height: 200,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: NetworkImage(
                                               'http://image.tmdb.org/t/p/w500' +
-                                                  popActors[index]['profile_path'],
+                                                  popActors[index]
+                                                      ['profile_path'],
                                             ),
                                           ),
                                         ),
@@ -353,7 +375,8 @@ class _search_viewState extends State<search> {
                                     ),
                                     Container(
                                       child: modified_text(
-                                        text: popActors[index]['name'] ?? 'loading',
+                                        text: popActors[index]['name'] ??
+                                            'loading',
                                         color: Colors.white,
                                         size: 15,
                                       ),
@@ -365,7 +388,6 @@ class _search_viewState extends State<search> {
                           },
                         ),
                       ),
-
                     ],
                   ),
                 ],

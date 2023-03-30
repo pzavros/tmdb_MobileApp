@@ -311,18 +311,26 @@ class _search_viewState extends State<search> {
                           scrollDirection: Axis.horizontal,
                           itemCount: popActors.length,
                           itemBuilder: (context, index) {
+                            // Skip the actor if any of the required fields are null
+                            if (popActors[index]['profile_path'] == null ||
+                                popActors[index]['name'] == null ||
+                                popActors[index]['known_for'] == null ||
+                                popActors[index]['id'] == null) {
+                              return SizedBox.shrink();
+                            }
+
                             return InkWell(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => actorsfulldesc_view(
-                                            picture: popActors[index]
-                                                ['profile_path'],
-                                            title: popActors[index]['name'],
-                                            known: popActors[index]['known_for'],
-                                            id: popActors[index]['id'],
-                                          )),
+                                    builder: (context) => actorsfulldesc_view(
+                                      picture: popActors[index]['profile_path'],
+                                      title: popActors[index]['name'],
+                                      known: popActors[index]['known_for'],
+                                      id: popActors[index]['id'],
+                                    ),
+                                  ),
                                 );
                               },
                               child: Container(
@@ -334,28 +342,30 @@ class _search_viewState extends State<search> {
                                       child: Container(
                                         height: 200,
                                         decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    'http://image.tmdb.org/t/p/w500' +
-                                                        popActors[index]
-                                                            ['profile_path']))),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              'http://image.tmdb.org/t/p/w500' +
+                                                  popActors[index]['profile_path'],
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     Container(
                                       child: modified_text(
-                                          text: popActors[index]['name'] != null
-                                              ? popActors[index]['name']
-                                              : 'loading',
-                                          color: Colors.white,
-                                          size: 15),
-                                    )
+                                        text: popActors[index]['name'] ?? 'loading',
+                                        color: Colors.white,
+                                        size: 15,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             );
                           },
                         ),
-                      )
+                      ),
+
                     ],
                   ),
                 ],

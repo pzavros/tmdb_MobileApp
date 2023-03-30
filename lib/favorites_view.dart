@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdbapp/modified_text.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:shake/shake.dart';
 import 'package:tmdbapp/search_view.dart';
 
@@ -16,20 +17,21 @@ class favorites extends StatefulWidget {
 class _favoritesState extends State<favorites> {
   Query dbRef = FirebaseDatabase.instance.ref().child('favorites');
   DatabaseReference reference = FirebaseDatabase.instance.ref().child('favorites');
-  DatabaseReference ref = FirebaseDatabase.instance.ref("favorites");
 
   List<Map<String, dynamic>> favoriteItems = [];
   List<String> favoritePaths = [];
 
   @override
-
   void initState() {
     super.initState();
     activateListeners();
-    // ...
   }
 
-  void activateListeners() {
+  void activateListeners() async {
+    final FirebaseDatabase database = FirebaseDatabase.instance;
+     database.setPersistenceEnabled(true);
+    final DatabaseReference favRef = database.reference().child('favorites');
+    favRef.keepSynced(true);
     dbRef.onValue.listen((event) {
       List<Map<String, dynamic>> items = [];
       if (event.snapshot.value != null) {
@@ -138,9 +140,27 @@ class _favoritesState extends State<favorites> {
                         setState(() {
                           favoritePaths.removeAt(index);
                         });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Removed from favorites'),
+                            action: SnackBarAction(
+                              label: 'Undo',
+                              onPressed: () {
+                                // Add the item back to favorites
+                                // This is just an example, you will need to implement this yourself
+                              },
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        );
+
                       });
                     },
                   ),
+
 
 
                 ],

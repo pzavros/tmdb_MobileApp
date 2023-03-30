@@ -32,13 +32,10 @@ List actorssearchList = [];
     Map tvsearchResult = await tmdb.v3.search.queryTvShows(widget.searchtext!);
     Map actorssearchResult = await tmdb.v3.search.queryPeople(widget.searchtext!);
 
-    //print(actorsResult);
-
     setState(() {
       searchList = searchResult['results'];
       tvsearchList = tvsearchResult['results'];
       actorssearchList = actorssearchResult['results'];
-      print(searchList);
     });
 
   }
@@ -72,8 +69,7 @@ List actorssearchList = [];
                 size: 26,
               ),
               Container(
-                padding: EdgeInsets.all(10),
-                height: 270,
+                height: 400,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: searchList.length,
@@ -91,13 +87,13 @@ List actorssearchList = [];
                           );
                         },
                         child: Container(
-                          width: 140,
+                          width: 200,
                           child: Column(
                             children: [
                               Stack(
                                 children: [
                                   Container(
-                                    height: 200,
+                                    height: 300,
                                     child: AspectRatio(
                                       aspectRatio: 0.7,
                                       child: ClipRRect(
@@ -140,6 +136,9 @@ List actorssearchList = [];
                                   ),
                                 ],
                               ),
+                              Container(
+                                child: modified_text(text: searchList[index]['title'], color: Colors.white, size: 20),
+                              )
                             ],
                           ),
                         ),
@@ -150,9 +149,6 @@ List actorssearchList = [];
               )
             ],
           ),
-
-
-
           //tv shows search result
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +160,7 @@ List actorssearchList = [];
               ),
               SizedBox(height: 10),
               Container(
-                height: 270,
+                height: 400,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: tvsearchList.length,
@@ -181,55 +177,65 @@ List actorssearchList = [];
                         );
                       },
                       child: Container(
-                        width: 140,
+                        width: 200,
                         child: Column(
                           children: [
                             Visibility(
                               visible: tvsearchList[index]['poster_path'] != null,
-                              child: Stack(
+                              child: Column(
                                 children: [
-                                  Container(
-                                    height: 200,
-                                    child: AspectRatio(
-                                      aspectRatio: 0.7,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'http://image.tmdb.org/t/p/w500' +
-                                              (tvsearchList[index]['poster_path'] ?? 'Not found'),
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return Center(
-                                              child: Text('Error loading image'),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 10,
-                                    top: 10,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
-                                        ),
-                                        Text(
-                                          '${tvsearchList[index]['vote_average'] ?? 'not found'}',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        height: 300,
+                                        child: AspectRatio(
+                                          aspectRatio: 0.7,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              'http://image.tmdb.org/t/p/w500' +
+                                                  (tvsearchList[index]['poster_path'] ?? 'Not found'),
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (context, error, stackTrace) {
+                                                return Center(
+                                                  child: Text('Error loading image'),
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      Positioned(
+                                        left: 10,
+                                        top: 10,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                            ),
+                                            Text(
+                                              '${tvsearchList[index]['vote_average'] ?? 'not found'}',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                  Container(
+                                    child: modified_text(text: tvsearchList[index]['name'], color: Colors.white, size: 18),
                                   ),
                                 ],
                               ),
+
                             ),
+
                           ],
                         ),
                       ),

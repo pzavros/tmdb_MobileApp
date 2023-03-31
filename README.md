@@ -14,10 +14,10 @@ TMDB App is a Flutter application that allows users to search for movies, view m
 <img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161029.jpg" width="300" height="500">
 <img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161032.jpg" width="300" height="500">
 <img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161042.jpg" width="300" height="500">
-<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161022.jpg" width="300" height="500">
-<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161028.jpg" width="300" height="500">
-<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161034.jpg" width="300" height="500">
-<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161041.jpg" width="300" height="500">
+<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161122.jpg" width="300" height="500">
+<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161128.jpg" width="300" height="500">
+<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161134.jpg" width="300" height="500">
+<img src="lib/tmdb%20-%20screenshots/Screenshot_20230331_161141.jpg" width="300" height="500">
 
 
 ## Contributors

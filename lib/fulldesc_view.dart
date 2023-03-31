@@ -97,12 +97,6 @@ class _fullDesc_viewState extends State<fullDesc_view> {
 
               final snackBar = SnackBar(
                 content: const Text('Added to favorites!'),
-                action: SnackBarAction(
-                  label: 'Undo',
-                  onPressed: () {
-                    // Some code to undo the change.
-                  },
-                ),
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),

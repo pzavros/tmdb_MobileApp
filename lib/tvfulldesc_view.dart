@@ -87,12 +87,6 @@ class _tvfulldescState extends State<tvfulldesc> {
 
               final snackBar = SnackBar(
                 content: const Text('Added to favorites!'),
-                action: SnackBarAction(
-                  label: 'Undo',
-                  onPressed: () {
-                    // Some code to undo the change.
-                  },
-                ),
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),

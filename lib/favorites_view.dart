@@ -23,9 +23,11 @@ class _favoritesState extends State<favorites> {
 
   @override
   void initState() {
-    super.initState();
     activateListeners();
+    super.initState();
+
   }
+
 
   void activateListeners() async {
     final FirebaseDatabase database = FirebaseDatabase.instance;
@@ -137,19 +139,13 @@ class _favoritesState extends State<favorites> {
                     onPressed: () {
                       reference.child('/${favoritePaths[index]}').remove().then((value) {
                         print('done');
-                        setState(() {
-                          favoritePaths.removeAt(index);
-                        });
+                          setState(() {
+                            favoritePaths.removeAt(index);
+                          });
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('Removed from favorites'),
-                            action: SnackBarAction(
-                              label: 'Undo',
-                              onPressed: () {
-                                // Add the item back to favorites
-                                // This is just an example, you will need to implement this yourself
-                              },
-                            ),
+
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),

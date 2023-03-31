@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:tmdbapp/tvfulldesc_view.dart';
-
 import 'actorsfulldesc_view.dart';
 import 'fulldesc_view.dart';
 import 'modified_text.dart';

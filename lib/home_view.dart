@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shake/shake.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:tmdbapp/tvfulldesc_view.dart';
 import 'fulldesc_view.dart';
-import 'main.dart';
 import 'modified_text.dart';
 
 class home extends StatefulWidget {
@@ -22,7 +20,6 @@ class _homeState extends State<home> {
   List upcomingMovies = [];
   List popShows = [];
   List topratedShows = [];
-  //List latestShows = [];
 
   loadApi() async {
     TMDB tmdb = TMDB(ApiKeys(ApiKey, ApiToken));
@@ -35,11 +32,6 @@ class _homeState extends State<home> {
     Map upcomingResult = await tmdb.v3.movies.getUpcoming();
     Map populartvResult = await tmdb.v3.tv.getPopular();
     Map topratedtvResult = await tmdb.v3.tv.getTopRated();
-    // Map latesttvResult = await tmdb.v3.tv.getLatest();
-    Map result2 = await tmdb.v3.search.queryMovies("");
-
-    //print(populartvResult);
-    // print(popMovies[0]["original_title"]);
 
     setState(() {
       popMovies = popularResult['results'];
@@ -47,7 +39,6 @@ class _homeState extends State<home> {
       upcomingMovies = upcomingResult['results'];
       popShows = populartvResult['results'];
       topratedShows = topratedtvResult['results'];
-      //latestShows = latesttvResult['results'];
     });
   }
 
@@ -55,20 +46,6 @@ class _homeState extends State<home> {
   void initState() {
     super.initState();
     loadApi();
-    ShakeDetector detector = ShakeDetector.autoStart(
-        onPhoneShake: () {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Shake!'),
-        ),
-      );
-      // Do stuff on phone shake
-    },
-    minimumShakeCount: 1,
-    shakeSlopTimeMS: 500,
-    shakeCountResetTime: 3000,
-    shakeThresholdGravity: 2.7,
-    );
 
   }
 
@@ -104,6 +81,7 @@ class _homeState extends State<home> {
                 ListView(
 
                   children: [
+                    //Display trending movies
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -178,6 +156,7 @@ class _homeState extends State<home> {
                       ],
                     ),
 
+                    //Display top rated movies
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -249,7 +228,7 @@ class _homeState extends State<home> {
                         )
                       ],
                     ),
-                    //Upcoming Movies
+                    //Display Upcoming Movies
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -323,8 +302,12 @@ class _homeState extends State<home> {
                     ),
                   ],
                 ),
+
+                //2nd screen on home page
                 ListView(
                   children: [
+
+                    //Display trending tv shows
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -398,6 +381,7 @@ class _homeState extends State<home> {
                       ],
                     ),
 
+                    //Display top rated tv shows
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

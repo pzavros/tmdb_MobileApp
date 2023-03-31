@@ -110,14 +110,6 @@ class _tvfulldescState extends State<tvfulldesc> {
               ],
             ),
           ),
-
-
-          // Container(
-          //   height: 200,
-          //   width: 100,
-          //   child: Image.network('http://image.tmdb.org/t/p/w500' +
-          //       widget.itemDesc['backdrop_path']),
-          // ),
           Container(
                 padding: EdgeInsets.all(10),
                 child: modified_text(

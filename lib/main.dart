@@ -1,12 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdbapp/home_view.dart';
-import 'package:tmdbapp/movies_view.dart';
 import 'package:tmdbapp/search_view.dart';
 import 'package:tmdb_api/tmdb_api.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:shake/shake.dart';
-
 import 'favorites_view.dart';
 
 Future<void> main() async {
@@ -53,7 +49,6 @@ class _mainWidget_viewState extends State<mainWidget_view> {
     });
   }
 
-  //List<Movie> _popularMovies = [];
   int _currentIndex = 0;
 
   final List<Widget> _children = [
@@ -72,7 +67,6 @@ class _mainWidget_viewState extends State<mainWidget_view> {
   @override
   void initState() {
     super.initState();
-    // loadApi();
   }
 
   Widget build(BuildContext context) {

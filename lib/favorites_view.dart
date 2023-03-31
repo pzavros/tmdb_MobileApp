@@ -2,10 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdbapp/modified_text.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:shake/shake.dart';
-import 'package:tmdbapp/search_view.dart';
-
 import 'main.dart';
 class favorites extends StatefulWidget {
   const favorites({Key? key}) : super(key: key);

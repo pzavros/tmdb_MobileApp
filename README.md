@@ -8,3 +8,8 @@ TMDB App is a Flutter application that allows users to search for movies, view m
 ## Build in 
 * Flutter - Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
 * TMDB API - A web service that provides movie data.
+##Screenshots
+
+
+## Contributors
+Panayiotis Zavros

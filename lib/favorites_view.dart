@@ -62,19 +62,21 @@ class _favoritesState extends State<favorites> {
     );
   }
 
+
+  //If the list is empty Display button 'Discover'
   Widget _buildEmptyMessage() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Your favorite list is empty!',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -129,6 +131,7 @@ class _favoritesState extends State<favorites> {
                     size: 20,
                   ),
                   SizedBox(height: 8),
+                  //Button to remove items from Database
                   IconButton(
                     icon: Icon(
                       item['isFavorite']
@@ -138,13 +141,13 @@ class _favoritesState extends State<favorites> {
                     ),
                     onPressed: () {
                       reference.child('/${favoritePaths[index]}').remove().then((value) {
-                        print('done');
                           setState(() {
                             favoritePaths.removeAt(index);
                           });
+                        //Snack bar to show that the item has removed
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Removed from favorites'),
+                            content: const Text('Removed from favorites'),
 
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
@@ -156,9 +159,6 @@ class _favoritesState extends State<favorites> {
                       });
                     },
                   ),
-
-
-
                 ],
               ),
             ),

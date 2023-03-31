@@ -1,16 +1,40 @@
-# tmdb
+TMDB App
+TMDB App is a Flutter application that allows users to search for movies, view movie details, and find similar movies.
 
-A new Flutter project.
+Features
+Search for movies using keywords
+View movie details, including title, release date, overview, and rating
+Find similar movies based on a selected movie
+App uses the TMDB API for movie data
+Getting Started
+Prerequisites
+To run this application, you will need to have the following:
 
-## Getting Started
+Flutter SDK installed
+Android Studio or VS Code with the Dart and Flutter plugins installed
+A TMDB API key, which can be obtained from https://www.themoviedb.org/settings/api
+Installing
+Clone the repository using the following command:
 
-This project is a starting point for a Flutter application.
+bash
+Copy code
+git clone https://github.com/YOUR-USERNAME/tmdb-app.git
+Navigate to the project directory and run the following command to install the required dependencies:
 
-A few resources to get you started if this is your first Flutter project:
+arduino
+Copy code
+flutter pub get
+Create a new file named .env in the project root directory and add your TMDB API key in the following format:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+makefile
+Copy code
+API_KEY=YOUR_API_KEY_HERE
+Running the App
+To run the app on an Android emulator or physical device, use the following command:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+arduino
+Copy code
+flutter run
+Built With
+Flutter - Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+TMDB API - A web service that provides movie data.

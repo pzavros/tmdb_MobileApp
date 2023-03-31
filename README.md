@@ -1,4 +1,5 @@
 ### TMDB APP
+# This is a project for Uclan Cyprus 3rd year computer sciense students
 TMDB App is a Flutter application that allows users to search for movies, view movie details, and find similar movies.
 ## Features
 * Search for movies using keywords
